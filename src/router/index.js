@@ -166,12 +166,13 @@ export const dynamicRoutes = [
 
 // 防止连续点击多次路由报错
 let routerPush = Router.prototype.push;
-Router.prototype.push = function push(location) {
+Router.prototype.push = function push (location) {
   return routerPush.call(this, location).catch(err => err)
 }
 
 export default new Router({
-  mode: 'history', // 去掉url中的#
+  // mode: 'history', // 去掉url中的#
+  mode: 'hash',
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })
